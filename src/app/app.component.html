@@ -1,3 +1,64 @@
-<h1>
-  {{title}}
-</h1>
+<md-grid-list cols="3">
+
+    <md-grid-tile>
+
+        <md-list>
+
+            <md-list-item>
+                <form (ngSubmit)=addEarnings()>
+                    <input name="name" md-line type="text" [(ngModel)]="earningsName">
+                    <input name="value" md-line type="number" [(ngModel)]="earningsValue">
+                    <button type="submit" md-line>add</button>
+                </form>
+            </md-list-item>
+
+            <md-list-item>
+                {{earnings}}
+            </md-list-item>
+
+            <md-list-item *ngFor="let earnings of earningsData">
+                <div md-line>{{earnings.name}}</div>
+                <div md-line>{{earnings.value}}</div>
+            </md-list-item>
+
+        </md-list>
+
+    </md-grid-tile>
+
+    <md-grid-tile>
+
+        <md-list>
+
+            <md-list-item>
+                <form (ngSubmit)=addCosts()>
+                    <input name="name" md-line type="text" [(ngModel)]="costsName">
+                    <input name="value" md-line type="number" [(ngModel)]="costsValue">
+                    <button type="submit" md-line>add</button>
+                </form>
+            </md-list-item>
+
+            <md-list-item>
+                {{costs}}
+            </md-list-item>
+
+            <md-list-item *ngFor="let costs of costsData">
+                <div md-line>{{costs.name}}</div>
+                <div md-line>{{costs.value}}</div>
+            </md-list-item>
+
+        </md-list>
+
+    </md-grid-tile>
+
+    <md-grid-tile>
+        
+        <md-list>
+            <md-list-item>
+                {{remainder}}
+            </md-list-item>
+        </md-list>
+
+    </md-grid-tile>
+
+</md-grid-list>
+
