@@ -82,6 +82,7 @@ export class AppComponent implements OnInit {
     this.earningsValue = '';
 
     this.getRemainder();
+    console.log(this);
   }
 
   addCosts(){

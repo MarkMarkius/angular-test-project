@@ -1,83 +1,71 @@
-<md-grid-list cols="3" rowHeight="200px">
-
-    <md-grid-tile>
-        <md-list>
-            <md-list-item>
-                <form (ngSubmit)=addEarnings()>
-                    <input name="name" md-line type="text" [(ngModel)]="earningsName">
-                    <input name="value" md-line type="number" [(ngModel)]="earningsValue">
-                    <button type="submit" md-line>add</button>
-                </form>
-            </md-list-item>
-        </md-list>
-    </md-grid-tile>
-
-    <md-grid-tile>
-        <md-list>
-            <md-list-item>
-                <form (ngSubmit)=addCosts()>
-                    <input name="name" md-line type="text" [(ngModel)]="costsName">
-                    <input name="value" md-line type="number" [(ngModel)]="costsValue">
-                    <button type="submit" md-line>add</button>
-                </form>
-            </md-list-item>
-        </md-list>
-    </md-grid-tile>
-
-
-
-</md-grid-list>
-<md-grid-list cols="3">
-
-    <md-grid-tile>
-
-        <md-list>
-
-
-
-            <md-list-item>
-                {{earnings}}
-            </md-list-item>
-
-            <md-list-item *ngFor="let earnings of earningsData">
-                <div md-line>{{earnings.name}}</div>
-                <div md-line>{{earnings.value}}</div>
-                <div md-line>{{earnings.date}}</div>
-            </md-list-item>
-
-        </md-list>
-
-    </md-grid-tile>
-
-    <md-grid-tile>
-
-        <md-list>
-
-
-
-            <md-list-item>
-                {{costs}}
-            </md-list-item>
-
-            <md-list-item *ngFor="let costs of costsData">
-                <div md-line>{{costs.name}}</div>
-                <div md-line>{{costs.value}}</div>
-                <div md-line>{{costs.date}}</div>
-            </md-list-item>
-
-        </md-list>
-
-    </md-grid-tile>
-
-    <md-grid-tile>
-
-        <md-list>
-            <md-list-item>
-                {{remainder}}
-            </md-list-item>
-        </md-list>
-
-    </md-grid-tile>
-
-</md-grid-list>
-
+<header class="navbar-fixed">
+    <nav>
+        <div class="nav-wrapper container">
+            <a href="#" class="brand-logo">Balance</a>
+            <ul id="nav-mobile" class="right hide-on-med-and-down">
+                <li>
+                    <i class="material-icons left">arrow_downward</i>
+                    <span style="margin-right: 15px;">{{earnings}}</span>
+                </li>
+                <li>
+                    <i class="material-icons left">arrow_upward</i>
+                    <span style="margin-right: 15px;">{{costs}}</span>
+                </li>
+                <li>
+                    <i class="material-icons left">drag_handle</i>
+                    <span style="margin-right: 15px;">{{remainder}}</span>
+                </li>
+            </ul>
+        </div>
+    </nav>
+</header>
+<div class="container" style="margin: 30px auto 0;">
+    <div class="row">
+        <div class="col s6">
+            <form class="row" (ngSubmit)=addEarnings()>
+                <div class="input-field col s5">
+                    <input class="validate" id="earningsName" name="earningsName" type="text"
+                          [(ngModel)]="earningsName">
+                    <label for="earningsName">Name</label>
+                </div>
+                <div class="input-field col s5">
+                    <input class="validate" id="earningsValue" name="value" type="number"
+                           [(ngModel)]="earningsValue">
+                    <label for="earningsValue">Value</label>
+                </div>
+                <div class="input-field col s2">
+                    <button class="btn-floating btn-large waves-effect waves-light" type="submit" >
+                        <i class="material-icons">add</i>
+                    </button>
+                </div>
+            </form>
+            <div class="card item item--earnings" *ngFor="let earnings of earningsData">
+                <div class="item_name">{{earnings.name}}</div>
+                <div class="item_date">{{earnings.date}}</div>
+                <div class="item_value">{{earnings.value}}</div>
+            </div>
+        </div>
+        <div class="col s6">
+            <form class="row" (ngSubmit)=addCosts()>
+                <div class="input-field col s5">
+                    <input class="validate" id="costsName" name="name" type="text" [(ngModel)]="costsName">
+                    <label for="costsName">Name</label>
+                </div>
+                <div class="input-field col s5">
+                    <input class="validate" id="costsValue" name="value" type="number" [(ngModel)]="costsValue">
+                    <label for="costsValue">Value</label>
+                </div>
+                <div class="input-field col s2">
+                    <button class="btn-floating btn-large waves-effect waves-light red" type="submit" >
+                        <i class="material-icons">add</i>
+                    </button>
+                </div>
+            </form>
+            <div class="card item item--costs" *ngFor="let costs of costsData">
+                <div class="item_name">{{costs.name}}</div>
+                <div class="item_date">{{costs.date}}</div>
+                <div class="item_value">{{costs.value}}</div>
+            </div>
+        </div>
+    </div>
+</div>

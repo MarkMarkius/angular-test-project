@@ -1,1 +1,28 @@
-/* You can add global styles to this file, and also import other style files */
+nav ul li{
+    font-size: 24px;
+}
+.item{
+    padding: 15px;
+}
+
+.item_name{
+    float: left;
+}
+
+.item_date{
+    float: right;
+    color: #b0bec5;
+}
+
+.item_value{
+    clear: both;
+    font-size: 28px;
+}
+
+.item--earnings .item_value{
+    color: #26a69a;
+}
+
+.item--costs .item_value{
+    color: #f44336;
+}
