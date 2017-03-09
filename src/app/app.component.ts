@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 
-import {Transaction} from './transaction';
+import { Transaction } from './transaction';
 import { AppService } from './app.service';
-import { incomeData, lossData } from './mook-transaction';
+import { INCOMEDATATA, LOSSDATA } from './mook-transaction';
 
 @Component({
   selector: 'app-root',
@@ -15,25 +15,35 @@ export class AppComponent implements OnInit {
   incomeData: Transaction[];
   lossData: Transaction[];
 
-  incomeSum: number = 0;
-  lossSum: number = 0;
-  remainder: number = 0;
+  incomeGross: number;
+  lossSGross : number;
+  remainder: number;
 
-  incomeName: string = '';
-  incomeValue: string = '';
+  incomeName: string;
+  incomeValue: string;
 
-  lossName: string = '';
-  lossValue: string = '';
+  lossName: string;
+  lossValue: string;
 
-  date: string = '';
+  date: string;
 
   constructor(private appService: AppService) {
+    this.incomeGross = 0;
+    this.lossSGross = 0;
+    this.remainder  = 0;
 
+    this.incomeName = '';
+    this.incomeValue = '';
+
+    this.lossName = '';
+    this.lossValue = '';
+
+    this.date = '';
   }
 
   getData(): void {
-    this.appService.getData(incomeData).then(incomeData => this.incomeData = incomeData);
-    this.appService.getData(lossData).then(lossData => this.lossData = lossData);
+    this.appService.getData(INCOMEDATATA).then(incomeData => this.incomeData = INCOMEDATATA);
+    this.appService.getData(LOSSDATA).then(lossData => this.lossData = LOSSDATA);
   }
 
   getSum(data): number{
@@ -47,18 +57,16 @@ export class AppComponent implements OnInit {
   }
 
   getRemainder(){
-    this.remainder = this.incomeSum - this.lossSum;
+    this.remainder = this.incomeGross - this.lossSGross;
   }
 
   ngOnInit(){
     this.getData();
-
-    this.incomeSum = this.getSum(incomeData);
-    this.lossSum = this.getSum(lossData);
+    this.incomeGross = this.getSum(this.incomeData);
+    this.lossSGross = this.getSum(this.lossData);
     this.getRemainder();
     this.date = this.getCurrentDate();
   }
-
 
   getCurrentDate(){
     let currentDate = new Date();
@@ -77,7 +85,7 @@ export class AppComponent implements OnInit {
     let newIncomeData: Transaction = new Transaction(this.incomeName, Number(this.incomeValue), this.date);
     this.incomeData.push(newIncomeData);
 
-    this.incomeSum = this.getSum(this.incomeData);
+    this.incomeGross = this.getSum(this.incomeData);
 
     this.incomeName = '';
     this.incomeValue = '';
@@ -89,7 +97,7 @@ export class AppComponent implements OnInit {
     let newLossData: Transaction = new Transaction(this.lossName, Number(this.lossValue), this.date );
     this.lossData.push(newLossData);
 
-    this.lossSum = this.getSum(lossData);
+    this.lossSGross = this.getSum(this.lossData);
 
     this.lossName = '';
     this.lossValue = '';
