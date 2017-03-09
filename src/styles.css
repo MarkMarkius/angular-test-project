@@ -19,10 +19,10 @@ nav ul li{
     font-size: 28px;
 }
 
-.item--earnings .item_value{
+.item--income .item_value{
     color: #26a69a;
 }
 
-.item--costs .item_value{
+.item--loss .item_value{
     color: #f44336;
 }

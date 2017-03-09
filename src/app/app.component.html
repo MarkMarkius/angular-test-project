@@ -5,11 +5,11 @@
             <ul id="nav-mobile" class="right hide-on-med-and-down">
                 <li>
                     <i class="material-icons left">arrow_downward</i>
-                    <span style="margin-right: 15px;">{{earnings}}</span>
+                    <span style="margin-right: 15px;">{{incomeSum}}</span>
                 </li>
                 <li>
                     <i class="material-icons left">arrow_upward</i>
-                    <span style="margin-right: 15px;">{{costs}}</span>
+                    <span style="margin-right: 15px;">{{lossSum}}</span>
                 </li>
                 <li>
                     <i class="material-icons left">drag_handle</i>
@@ -22,16 +22,16 @@
 <div class="container" style="margin: 30px auto 0;">
     <div class="row">
         <div class="col s6">
-            <form class="row" (ngSubmit)=addEarnings()>
+            <form class="row" (ngSubmit)=addIncome()>
                 <div class="input-field col s5">
-                    <input class="validate" id="earningsName" name="earningsName" type="text"
-                          [(ngModel)]="earningsName">
-                    <label for="earningsName">Name</label>
+                    <input class="validate" id="incomeName" name="incomeName" type="text"
+                          [(ngModel)]="incomeName">
+                    <label for="incomeName">Name</label>
                 </div>
                 <div class="input-field col s5">
-                    <input class="validate" id="earningsValue" name="value" type="number"
-                           [(ngModel)]="earningsValue">
-                    <label for="earningsValue">Value</label>
+                    <input class="validate" id="incomeValue" name="value" type="number"
+                           [(ngModel)]="incomeValue">
+                    <label for="incomeValue">Value</label>
                 </div>
                 <div class="input-field col s2">
                     <button class="btn-floating btn-large waves-effect waves-light" type="submit" >
@@ -39,21 +39,21 @@
                     </button>
                 </div>
             </form>
-            <div class="card item item--earnings" *ngFor="let earnings of earningsData">
-                <div class="item_name">{{earnings.name}}</div>
-                <div class="item_date">{{earnings.date}}</div>
-                <div class="item_value">{{earnings.value}}</div>
+            <div class="card item item--income" *ngFor="let income of incomeData">
+                <div class="item_name">{{income.name}}</div>
+                <div class="item_date">{{income.date}}</div>
+                <div class="item_value">{{income.value}}</div>
             </div>
         </div>
         <div class="col s6">
-            <form class="row" (ngSubmit)=addCosts()>
+            <form class="row" (ngSubmit)=addLoss()>
                 <div class="input-field col s5">
-                    <input class="validate" id="costsName" name="name" type="text" [(ngModel)]="costsName">
-                    <label for="costsName">Name</label>
+                    <input class="validate" id="lossName" name="name" type="text" [(ngModel)]="lossName">
+                    <label for="lossName">Name</label>
                 </div>
                 <div class="input-field col s5">
-                    <input class="validate" id="costsValue" name="value" type="number" [(ngModel)]="costsValue">
-                    <label for="costsValue">Value</label>
+                    <input class="validate" id="lossValue" name="value" type="number" [(ngModel)]="lossValue">
+                    <label for="lossValue">Value</label>
                 </div>
                 <div class="input-field col s2">
                     <button class="btn-floating btn-large waves-effect waves-light red" type="submit" >
@@ -61,10 +61,10 @@
                     </button>
                 </div>
             </form>
-            <div class="card item item--costs" *ngFor="let costs of costsData">
-                <div class="item_name">{{costs.name}}</div>
-                <div class="item_date">{{costs.date}}</div>
-                <div class="item_value">{{costs.value}}</div>
+            <div class="card item item--loss" *ngFor="let loss of lossData">
+                <div class="item_name">{{loss.name}}</div>
+                <div class="item_date">{{loss.date}}</div>
+                <div class="item_value">{{loss.value}}</div>
             </div>
         </div>
     </div>

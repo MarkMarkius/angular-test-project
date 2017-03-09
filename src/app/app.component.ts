@@ -1,23 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 
-class Transaction{
-  constructor(public name: string,
-              public value: number,
-              public date: string){}
-}
-
-const earningsData: Transaction[] = [
-  {  name: 'name1', value: 250, date: '02.03.2017'},
-  {  name: 'name1', value: 250, date: '02.03.2017'},
-  {  name: 'name1', value: 250, date: '02.03.2017'},
-  {  name: 'name1', value: 250, date: '02.03.2017'},
-  {  name: 'name2', value: 400, date: '03.03.2017'}
-];
-
-const costsData: Transaction[] = [
-  {  name: 'name1', value: 23, date: '04.03.2017'},
-  {  name: 'name2', value: 10, date: '05.03.2017'}
-];
+import {Transaction} from './transaction';
+import { AppService } from './app.service';
+import { incomeData, lossData } from './mook-transaction';
 
 @Component({
   selector: 'app-root',
@@ -27,29 +12,31 @@ const costsData: Transaction[] = [
 
 export class AppComponent implements OnInit {
 
-  earningsData: Transaction[] = earningsData;
-  costsData: Transaction[] = costsData;
+  incomeData: Transaction[];
+  lossData: Transaction[];
 
-  earnings: number = 0;
-  costs: number = 0;
+  incomeSum: number = 0;
+  lossSum: number = 0;
   remainder: number = 0;
 
-  earningsName: string = '';
-  earningsValue: string = '';
+  incomeName: string = '';
+  incomeValue: string = '';
 
-  costsName: string = '';
-  costsValue: string = '';
+  lossName: string = '';
+  lossValue: string = '';
 
   date: string = '';
 
-  ngOnInit(){
-    this.earnings = this.getSum(earningsData);
-    this.costs = this.getSum(costsData);
-    this.getRemainder();
-    this.date = this.getCurrentDate();
+  constructor(private appService: AppService) {
+
   }
 
-  getSum(data) {
+  getData(): void {
+    this.appService.getData(incomeData).then(incomeData => this.incomeData = incomeData);
+    this.appService.getData(lossData).then(lossData => this.lossData = lossData);
+  }
+
+  getSum(data): number{
     let sum: number = 0;
     for (let key in data) {
       if( data.hasOwnProperty( key ) ) {
@@ -58,6 +45,20 @@ export class AppComponent implements OnInit {
     }
     return sum;
   }
+
+  getRemainder(){
+    this.remainder = this.incomeSum - this.lossSum;
+  }
+
+  ngOnInit(){
+    this.getData();
+
+    this.incomeSum = this.getSum(incomeData);
+    this.lossSum = this.getSum(lossData);
+    this.getRemainder();
+    this.date = this.getCurrentDate();
+  }
+
 
   getCurrentDate(){
     let currentDate = new Date();
@@ -72,33 +73,28 @@ export class AppComponent implements OnInit {
     return fullDate;
   }
 
-  addEarnings() {
-    let newEarningsData: Transaction = new Transaction(this.earningsName, Number(this.earningsValue), this.date);
-    this.earningsData.push(newEarningsData);
+  addIncome() {
+    let newIncomeData: Transaction = new Transaction(this.incomeName, Number(this.incomeValue), this.date);
+    this.incomeData.push(newIncomeData);
 
-    this.earnings = this.getSum(earningsData);
+    this.incomeSum = this.getSum(this.incomeData);
 
-    this.earningsName = '';
-    this.earningsValue = '';
-
-    this.getRemainder();
-    console.log(this);
-  }
-
-  addCosts(){
-    let newCostsData: Transaction = new Transaction(this.costsName, Number(this.costsValue), this.date );
-    this.costsData.push(newCostsData);
-
-    this.costs = this.getSum(costsData);
-
-    this.costsName = '';
-    this.costsValue = '';
+    this.incomeName = '';
+    this.incomeValue = '';
 
     this.getRemainder();
   }
 
-  getRemainder(){
-    this.remainder = this.earnings - this.costs;
+  addLoss(){
+    let newLossData: Transaction = new Transaction(this.lossName, Number(this.lossValue), this.date );
+    this.lossData.push(newLossData);
+
+    this.lossSum = this.getSum(lossData);
+
+    this.lossName = '';
+    this.lossValue = '';
+
+    this.getRemainder();
   }
 
 
