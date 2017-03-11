@@ -15,6 +15,9 @@ export class AppComponent implements OnInit {
   incomeData: Transaction[];
   lossData: Transaction[];
 
+  transIncome: Transaction = new Transaction('', null, null);
+  transLoss: Transaction = new Transaction('', null, null);
+
   incomeGross: number;
   lossSGross : number;
   remainder: number;
@@ -41,39 +44,36 @@ export class AppComponent implements OnInit {
     this.date = '';
   }
 
-  getData(): void {
-    this.appService.getData(INCOMEDATATA).then(incomeData => this.incomeData = INCOMEDATATA);
-    this.appService.getData(LOSSDATA).then(lossData => this.lossData = LOSSDATA);
+  getData() {
+    return Promise.all([
+      this.appService.getData(INCOMEDATATA).then(incomeData => this.incomeData = INCOMEDATATA),
+      this.appService.getData(LOSSDATA).then(lossData => this.lossData = LOSSDATA)
+    ]);
   }
 
-  getSum(data): number{
-    let sum: number = 0;
-    for (let key in data) {
-      if( data.hasOwnProperty( key ) ) {
-        sum += data[key].value;
-      }
-    }
-    return sum;
+  static getSum(data: Transaction[]): number {
+    return data.reduce((prev, item) => prev + item.value, 0);
   }
 
   getRemainder(){
     this.remainder = this.incomeGross - this.lossSGross;
   }
 
-  ngOnInit(){
-    this.getData();
-    this.incomeGross = this.getSum(this.incomeData);
-    this.lossSGross = this.getSum(this.lossData);
-    this.getRemainder();
-    this.date = this.getCurrentDate();
+  ngOnInit() {
+    this.getData().then(() => {
+      this.incomeGross = AppComponent.getSum(this.incomeData);
+      this.lossSGross = AppComponent.getSum(this.lossData);
+      this.getRemainder();
+      this.date = AppComponent.getCurrentDate();
+    });
   }
 
-  getCurrentDate(){
-    let currentDate = new Date();
+  static getCurrentDate(){
+    const currentDate = new Date();
     let day, month, year, fullDate;
 
-    currentDate.getDate() < 10 ? day = '0' + currentDate.getDate() : day = currentDate.getDate();
-    (currentDate.getMonth()+1) < 10 ? month = '0' + (currentDate.getMonth()+1) : month = (currentDate.getMonth()+1);
+    day = currentDate.getDate() < 10 ? '0' + currentDate.getDate() : currentDate.getDate();
+    month = (currentDate.getMonth()+1) < 10 ? '0' + (currentDate.getMonth()+1) :  (currentDate.getMonth()+1);
     year =  currentDate.getFullYear();
 
     fullDate = day + '.' + month + '.' + year;
@@ -81,26 +81,16 @@ export class AppComponent implements OnInit {
     return fullDate;
   }
 
-  addIncome() {
-    let newIncomeData: Transaction = new Transaction(this.incomeName, Number(this.incomeValue), this.date);
-    this.incomeData.push(newIncomeData);
-
-    this.incomeGross = this.getSum(this.incomeData);
-
-    this.incomeName = '';
-    this.incomeValue = '';
-
-    this.getRemainder();
-  }
-
-  addLoss(){
-    let newLossData: Transaction = new Transaction(this.lossName, Number(this.lossValue), this.date );
-    this.lossData.push(newLossData);
-
-    this.lossSGross = this.getSum(this.lossData);
-
-    this.lossName = '';
-    this.lossValue = '';
+  add(type: string, transaction: Transaction) {
+    if (type === 'income') {
+      this.incomeData.push(Object.assign({date: AppComponent.getCurrentDate()}, transaction));
+      this.incomeGross = AppComponent.getSum(this.incomeData);
+    } else {
+      this.lossData.push(Object.assign({date: AppComponent.getCurrentDate()}, transaction));
+      this.lossSGross = AppComponent.getSum(this.lossData);
+    }
+    transaction.name = '';
+    transaction.value = null;
 
     this.getRemainder();
   }
