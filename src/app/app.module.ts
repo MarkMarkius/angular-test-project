@@ -7,7 +7,7 @@ import { MaterialModule } from '@angular/material';
 import 'hammerjs';
 
 import { AppComponent } from './app.component';
-
+import { AppRoutingModule }     from './app-routing.module';
 import { AppService } from './app.service';
 import { MainComponent } from './main/main.component';
 
@@ -20,7 +20,8 @@ import { MainComponent } from './main/main.component';
     BrowserModule,
     FormsModule,
     HttpModule,
-    MaterialModule
+    MaterialModule,
+    AppRoutingModule
   ],
   providers: [AppService],
   bootstrap: [AppComponent]
