@@ -5,12 +5,13 @@
             <ul id="nav-mobile" class="right hide-on-med-and-down">
                 <li>
                     <i class="material-icons left">arrow_downward</i>
-                    <span style="margin-right: 15px;">{{incomeGross}}</span>
+                    <span  style="margin-right: 15px;">{{incomeGross}}</span>
                 </li>
                 <li>
                     <i class="material-icons left">arrow_upward</i>
                     <span style="margin-right: 15px;">{{lossSGross}}</span>
                 </li>
+
                 <li>
                     <i class="material-icons left">drag_handle</i>
                     <span style="margin-right: 15px;">{{remainder}}</span>
@@ -19,53 +20,5 @@
         </div>
     </nav>
 </header>
-<div class="container" style="margin: 30px auto 0;">
-    <div class="row">
-        <div class="col s6">
-            <form class="row" (ngSubmit)="add('income', transIncome)">
-                <div class="input-field col s5">
-                    <input class="validate" id="incomeName" name="incomeName" type="text"
-                           [(ngModel)]="transIncome.name">
-                    <label for="incomeName">Name</label>
-                </div>
-                <div class="input-field col s5">
-                    <input class="validate" id="incomeValue" name="value" type="number"
-                           [(ngModel)]="transIncome.value">
-                    <label for="incomeValue">Value</label>
-                </div>
-                <div class="input-field col s2">
-                    <button class="btn-floating btn-large waves-effect waves-light" type="submit" >
-                        <i class="material-icons">add</i>
-                    </button>
-                </div>
-            </form>
-            <div class="card item item--income" *ngFor="let income of incomeData">
-                <div class="item_name">{{income.name}}</div>
-                <div class="item_date">{{income.date}}</div>
-                <div class="item_value">{{income.value}}</div>
-            </div>
-        </div>
-        <div class="col s6">
-            <form class="row" (ngSubmit)="add('loss', transLoss)">
-                <div class="input-field col s5">
-                    <input class="validate" id="lossName" name="name" type="text" [(ngModel)]="transLoss.name">
-                    <label for="lossName">Name</label>
-                </div>
-                <div class="input-field col s5">
-                    <input class="validate" id="lossValue" name="value" type="number" [(ngModel)]="transLoss.value">
-                    <label for="lossValue">Value</label>
-                </div>
-                <div class="input-field col s2">
-                    <button class="btn-floating btn-large waves-effect waves-light red" type="submit" >
-                        <i class="material-icons">add</i>
-                    </button>
-                </div>
-            </form>
-            <div class="card item item--loss" *ngFor="let loss of lossData">
-                <div class="item_name">{{loss.name}}</div>
-                <div class="item_date">{{loss.date}}</div>
-                <div class="item_value">{{loss.value}}</div>
-            </div>
-        </div>
-    </div>
-</div>
+
+<app-main></app-main>
