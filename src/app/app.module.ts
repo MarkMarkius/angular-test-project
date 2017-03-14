@@ -6,15 +6,20 @@ import { HttpModule } from '@angular/http';
 import { MaterialModule } from '@angular/material';
 import 'hammerjs';
 
-import { AppComponent } from './app.component';
 import { AppRoutingModule }     from './app-routing.module';
 import { AppService } from './app.service';
+
+import { AppComponent } from './app.component';
 import { MainComponent } from './main/main.component';
+import { CategoriesComponent } from './categories/categories.component';
+import { CategoryItemComponent } from './category-item/category-item.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    MainComponent
+    MainComponent,
+    CategoriesComponent,
+    CategoryItemComponent
   ],
   imports: [
     BrowserModule,
