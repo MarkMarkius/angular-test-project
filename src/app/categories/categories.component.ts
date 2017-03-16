@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import {Category} from '../category';
 
 import {AppService} from '../app.service';
-import { CATEGORIES} from '../mook-transaction';
+import { CATEGORIES} from '../app.mook';
 
 @Component({
   selector: 'app-categories',

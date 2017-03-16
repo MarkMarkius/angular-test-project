@@ -4,7 +4,7 @@ import {Transaction} from '../transaction';
 import {Category} from '../category';
 
 import {AppService} from '../app.service';
-import {INCOMEDATATA, LOSSDATA, CATEGORIES} from '../mook-transaction';
+import {INCOMEDATATA, LOSSDATA, CATEGORIES} from '../app.mook';
 
 @Component({
     selector: 'app-main',
