@@ -12,18 +12,15 @@ import { CATEGORIES} from '../app.mook';
 })
 export class CategoriesComponent implements OnInit {
 
-  categories: Category[];
+  categories: Category[] = [];
 
   constructor(private appService: AppService) { }
 
   ngOnInit() {
-    this.getData();
+    this.appService.getCategory(CATEGORIES)
+        .then(categories => this.categories = CATEGORIES);
   }
 
-  getData() {
-    return Promise.all([
-      this.appService.getData(CATEGORIES).then(categories => this.categories = CATEGORIES)
-    ]);
-  }
+
 
 }

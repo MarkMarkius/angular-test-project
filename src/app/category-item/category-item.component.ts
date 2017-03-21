@@ -2,9 +2,10 @@ import 'rxjs';
 import {Component, OnInit} from '@angular/core';
 
 import {ActivatedRoute, Params} from '@angular/router';
-import {CATEGORIES} from '../app.mook';
-import {Category} from '../category';
+import {INCOMEDATATA, CATEGORIES} from '../app.mook';
 
+import {Transaction} from '../transaction';
+import {AppService} from '../app.service';
 
 @Component({
     selector: 'app-category-item',
@@ -13,25 +14,17 @@ import {Category} from '../category';
 })
 export class CategoryItemComponent implements OnInit {
 
-    category: Category;
+    item: Transaction[];
 
-    constructor(private route: ActivatedRoute) {}
+    constructor(private route: ActivatedRoute,
+                private appService: AppService) {}
 
     ngOnInit(): void {
         this.route.params
-            .switchMap((params: Params) => this.getCategory(+params['id']))
-            .subscribe(category => this.category = category);
-
+            .switchMap((params: Params) => this.appService.getTransByCat(+params['id'], INCOMEDATATA))
+            .subscribe(item => this.item = item);
     }
 
-    getCategories(): Promise<Category[]> {
-        return Promise.resolve(CATEGORIES);
-    }
-
-    getCategory(id: number): Promise<Category> {
-        return this.getCategories()
-            .then(category => category.find(category => category.id === id));
-    }
 
 
 }

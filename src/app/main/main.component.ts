@@ -33,8 +33,8 @@ export class MainComponent implements OnInit {
         this.lossSGross = 0;
         this.remainder = 0;
         this.date = MainComponent.getCurrentDate();
-        this.transIncome = new Transaction(null, null, null, this.date);
-        this.transLoss = new Transaction(null, null, null, this.date);
+        this.transIncome = new Transaction(null, null, null, null, this.date);
+        this.transLoss = new Transaction(null, null, null, null, this.date);
     }
 
     ngOnInit() {
@@ -47,9 +47,9 @@ export class MainComponent implements OnInit {
 
     getData() {
         return Promise.all([
-            this.appService.getData(INCOMEDATATA).then(incomeData => this.incomeData = INCOMEDATATA),
-            this.appService.getData(LOSSDATA).then(lossData => this.lossData = LOSSDATA),
-            this.appService.getData(CATEGORIES).then(categories => this.categories = CATEGORIES)
+            this.appService.getTransaction(INCOMEDATATA).then(incomeData => this.incomeData = INCOMEDATATA),
+            this.appService.getTransaction(LOSSDATA).then(lossData => this.lossData = LOSSDATA),
+            this.appService.getCategory(CATEGORIES).then(categories => this.categories = CATEGORIES)
         ]);
     }
 

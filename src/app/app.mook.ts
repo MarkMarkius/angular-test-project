@@ -2,14 +2,14 @@ import {Transaction} from './transaction';
 import {Category} from './category';
 
 export const INCOMEDATATA: Transaction[] = [
-    {name: 'name1', value: 250, category:'food', date: '02.03.2017'},
-    {name: 'name1', value: 250, category:'food', date: '02.03.2017'},
-    {name: 'name1', value: 250, category:'food', date: '02.03.2017'}
+    {name: 'name1', value: 250, category:'food', categoryId: 1, date: '02.03.2017'},
+    {name: 'name1', value: 250, category:'food', categoryId: 1, date: '02.03.2017'},
+    {name: 'name1', value: 250, category:'food', categoryId: 2, date: '02.03.2017'}
 ];
 
 export const LOSSDATA: Transaction[] = [
-    {name: 'name1', value: 23, category:'food', date: '04.03.2017'},
-    {name: 'name2', value: 10, category:'food', date: '05.03.2017'}
+    {name: 'name1', value: 23, category:'food', categoryId: 1, date: '04.03.2017'},
+    {name: 'name2', value: 10, category:'food', categoryId: 1, date: '05.03.2017'}
 ];
 
 export const CATEGORIES: Category[] = [
