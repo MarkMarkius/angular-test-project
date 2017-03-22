@@ -1,9 +1,9 @@
 import {Component, Input, OnInit} from '@angular/core';
 
-import {Transaction} from '../transaction';
-import {Category} from '../category';
+import {Transaction} from '../classes/transaction';
+import {Category} from '../classes/category';
 
-import {AppService} from '../app.service';
+import {AppService} from '../service/app.service';
 import {INCOMEDATATA, LOSSDATA, CATEGORIES} from '../app.mook';
 
 @Component({
@@ -33,8 +33,8 @@ export class MainComponent implements OnInit {
         this.lossSGross = 0;
         this.remainder = 0;
         this.date = MainComponent.getCurrentDate();
-        this.transIncome = new Transaction(null, null, null, null, this.date);
-        this.transLoss = new Transaction(null, null, null, null, this.date);
+        this.transIncome = new Transaction(null, null, null, this.date);
+        this.transLoss = new Transaction(null, null, null, this.date);
     }
 
     ngOnInit() {

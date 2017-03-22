@@ -7,10 +7,10 @@ import { MaterialModule } from '@angular/material';
 import 'hammerjs';
 
 import { AppRoutingModule }     from './app-routing.module';
-import { AppService } from './app.service';
+import { AppService } from './service/app.service';
 
-import { AppComponent } from './app.component';
-import { MainComponent } from './main/main.component';
+import { AppComponent } from './application/app.component';
+import { MainComponent } from './home/main.component';
 import { CategoriesComponent } from './categories/categories.component';
 import { CategoryItemComponent } from './category-item/category-item.component';
 

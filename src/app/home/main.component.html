@@ -6,7 +6,6 @@
           <input type="text"  name="date" value={{date}} [(ngModel)]="transIncome.date">
         </div>
         <div class="input-field col s5">
-
           <input class="validate" id="incomeName" name="incomeName" type="text"
                  [(ngModel)]="transIncome.name">
           <label for="incomeName">Name</label>
@@ -16,10 +15,8 @@
                  [(ngModel)]="transIncome.value">
           <label for="incomeValue">Value</label>
         </div>
-
         <div class="input-field col s10">
-
-          <select  class="browser-default" name="category" [(ngModel)]="transIncome.category">
+          <select class="browser-default" name="category" [(ngModel)]="transIncome.category">
             <option value="" disabled selected>Choose category</option>
             <option *ngFor="let category of categories"
                     value="{{category.name}}">{{category.name}}
@@ -36,7 +33,7 @@
         <div class="item_name">{{income.name}}</div>
         <div class="item_date">{{income.date}}</div>
         <div class="item_value">{{income.value}}</div>
-        <a href="">{{income.category}}</a>
+        <a [routerLink]="['/cat', income.category]">{{income.category}}</a>
       </div>
     </div>
     <div class="col s6">
@@ -59,7 +56,7 @@
         <div class="item_name">{{loss.name}}</div>
         <div class="item_date">{{loss.date}}</div>
         <div class="item_value">{{loss.value}}</div>
-        <a href="">{{loss.category}}</a>
+        <a [routerLink]="['/cat', loss.category]">{{loss.category}}</a>
       </div>
     </div>
   </div>

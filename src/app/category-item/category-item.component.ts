@@ -4,8 +4,8 @@ import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Params} from '@angular/router';
 import {INCOMEDATATA, CATEGORIES} from '../app.mook';
 
-import {Transaction} from '../transaction';
-import {AppService} from '../app.service';
+import {Transaction} from '../classes/transaction';
+import {AppService} from '../service/app.service';
 
 @Component({
     selector: 'app-category-item',
@@ -21,7 +21,7 @@ export class CategoryItemComponent implements OnInit {
 
     ngOnInit(): void {
         this.route.params
-            .switchMap((params: Params) => this.appService.getTransByCat(+params['id'], INCOMEDATATA))
+            .switchMap((params: Params) => this.appService.getTransByCat(params['name'], INCOMEDATATA))
             .subscribe(item => this.item = item);
     }
 

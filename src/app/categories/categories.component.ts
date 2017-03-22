@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 
-import {Category} from '../category';
+import {Category} from '../classes/category';
 
-import {AppService} from '../app.service';
+import {AppService} from '../service/app.service';
 import { CATEGORIES} from '../app.mook';
 
 @Component({

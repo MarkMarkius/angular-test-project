@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 
-import {Transaction} from './transaction';
-import {Category} from './category';
+import {Transaction} from '../classes/transaction';
+import {Category} from '../classes/category';
 
 @Injectable()
 export class AppService {
@@ -13,8 +13,8 @@ export class AppService {
         return Promise.resolve(data);
     }
 
-    getTransByCat(id: number, data): Promise<Transaction[]> {
+    getTransByCat(name: string, data): Promise<Transaction[]> {
         return this.getTransaction(data)
-            .then(category => category.filter(category => category.categoryId == id));
+            .then(category => category.filter(category => category.category == name));
     }
 }
