@@ -1,10 +1,10 @@
-import { BalansPage } from './app.po';
+import { BalancePage } from './app.po';
 
-describe('balans App', () => {
-  let page: BalansPage;
+describe('ang App', () => {
+  let page: BalancePage;
 
   beforeEach(() => {
-    page = new BalansPage();
+    page = new BalancePage();
   });
 
   it('should display message saying app works', () => {
