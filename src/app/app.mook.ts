@@ -15,7 +15,7 @@ export const LOSSDATA: Transaction[] = [
 export const CATEGORIES: Category[] = [
     {id: 1, name: 'food'},
     {id: 2, name: 'house'},
-    {id: 3, name: 'eating out'},
+    {id: 3, name: 'eatingout'},
     {id: 4, name: 'toiletry'},
     {id: 5, name: 'car'},
     {id: 6, name: 'transport'},
