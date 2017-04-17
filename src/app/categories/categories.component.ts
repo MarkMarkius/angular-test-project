@@ -1,9 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 
 import {Category} from '../classes/category';
 
 import {AppService} from '../service/app.service';
-import { CATEGORIES} from '../app.mook';
+import {CATEGORIES} from '../app.mook';
 
 @Component({
   selector: 'app-categories',
@@ -14,13 +14,13 @@ export class CategoriesComponent implements OnInit {
 
   categories: Category[] = [];
 
-  constructor(private appService: AppService) { }
+  constructor(private appService: AppService) {
+  }
 
   ngOnInit() {
     this.appService.getCategory(CATEGORIES)
-        .then(categories => this.categories = CATEGORIES);
+      .then(categories => this.categories = CATEGORIES);
   }
-
 
 
 }

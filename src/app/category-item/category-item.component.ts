@@ -2,29 +2,27 @@ import 'rxjs';
 import {Component, OnInit} from '@angular/core';
 
 import {ActivatedRoute, Params} from '@angular/router';
-import {INCOMEDATATA, CATEGORIES} from '../app.mook';
+import {INCOMEDATATA} from '../app.mook';
 
 import {Transaction} from '../classes/transaction';
 import {AppService} from '../service/app.service';
 
 @Component({
-    selector: 'app-category-item',
-    templateUrl: './category-item.component.html',
-    styleUrls: ['./category-item.component.css']
+  selector: 'app-category-item',
+  templateUrl: './category-item.component.html',
+  styleUrls: ['./category-item.component.css']
 })
 export class CategoryItemComponent implements OnInit {
 
-    item: Transaction[];
+  items: Transaction[];
 
-    constructor(private route: ActivatedRoute,
-                private appService: AppService) {}
+  constructor(private route: ActivatedRoute,
+              private appService: AppService) {
+  }
 
-    ngOnInit(): void {
-        this.route.params
-            .switchMap((params: Params) => this.appService.getTransByCat(params['name'], INCOMEDATATA))
-            .subscribe(item => this.item = item);
-    }
-
-
-
+  ngOnInit(): void {
+    this.route.params
+      .switchMap((params: Params) => this.appService.getTransByCat(params['name'], INCOMEDATATA))
+      .subscribe(items => this.items = items);
+  }
 }

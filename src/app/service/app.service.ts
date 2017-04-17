@@ -5,7 +5,7 @@ import {Category} from '../classes/category';
 
 @Injectable()
 export class AppService {
-    getTransaction(data): Promise<Transaction[]> {
+   getTransaction(data): Promise<Transaction[]> {
         return Promise.resolve(data);
     }
 
@@ -15,6 +15,6 @@ export class AppService {
 
     getTransByCat(name: string, data): Promise<Transaction[]> {
         return this.getTransaction(data)
-            .then(category => category.filter(category => category.category == name));
+            .then(category => category.filter(category => category.category === name));
     }
 }

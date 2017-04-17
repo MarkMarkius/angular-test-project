@@ -27,7 +27,7 @@
         </div>
 
         <div class="input-field col s10">
-          <div *ngFor="let category of categories">
+          <div *ngFor="let category of lossCategory">
             <input type="radio" id="{{category.name}}"
                    required
                    name="category"
@@ -77,7 +77,7 @@
         </div>
 
         <div class="input-field col s10">
-          <div *ngFor="let category of categories">
+          <div *ngFor="let category of incomeCategory">
             <input type="radio" id="{{category.name}}"
                    required
                    name="category"
