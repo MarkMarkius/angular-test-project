@@ -4,9 +4,9 @@
       <form class="row"  (ngSubmit)="add('income', transIncome); addIncome.reset()" #addIncome="ngForm">
 
         <div class="input-field col s5">
-          <input type="text"  class="validate" id="inomeDate"
+          <input type="text" class="validate" id="inomeDate"
                  required
-                 name="date"  [(ngModel)]="transIncome.date">
+                 name="date" [(ngModel)]="transIncome.date">
           <label for="inomeDate">date</label>
         </div>
 
@@ -33,7 +33,7 @@
                    name="category"
                    value="{{category.name}}"
                    [(ngModel)]="transIncome.category">
-            <label for="{{category.name}}">{{category.name}}</label>
+            <label for="{{category.name}}">{{category.name | titlecase}}</label>
           </div>
         </div>
 
@@ -83,7 +83,7 @@
                    name="category"
                    value="{{category.name}}"
                    [(ngModel)]="transLoss.category">
-            <label for="{{category.name}}">{{category.name}}</label>
+            <label for="{{category.name}}">{{category.name | titlecase}}</label>
           </div>
         </div>
 

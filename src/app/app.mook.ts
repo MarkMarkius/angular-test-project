@@ -1,5 +1,10 @@
+import {Balance} from './classes/balance';
 import {Transaction} from './classes/transaction';
 import {Category} from './classes/category';
+
+export const BALANCE: Balance[] = [
+  {income: 20, loss: 10, balance: 10}
+];
 
 export const INCOMEDATATA: Transaction[] = [
   {name: 'name1', value: 250, category: 'food', date: '02.03.2017'},

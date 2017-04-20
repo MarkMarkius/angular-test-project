@@ -2,20 +2,20 @@
     <nav>
         <div class="nav-wrapper container">
             <a class="brand-logo" routerLink="/" routerLinkActive="active">Balance</a>
-            <ul id="nav-mobile" class="right hide-on-med-and-down">
+            <ul id="nav-mobile" class="right hide-on-med-and-down" *ngFor="let bal of balance">
                 <li> <a  routerLink="cat" routerLinkActive="active">cat</a></li>
                 <li>
                     <i class="material-icons left">arrow_downward</i>
-                    <span  style="margin-right: 15px;">{{incomeGross}}</span>
+                    <span  style="margin-right: 15px;">{{bal.income}}</span>
                 </li>
                 <li>
                     <i class="material-icons left">arrow_upward</i>
-                    <span style="margin-right: 15px;">{{lossSGross}}</span>
+                    <span style="margin-right: 15px;">{{bal.loss}}</span>
                 </li>
 
                 <li>
                     <i class="material-icons left">drag_handle</i>
-                    <span style="margin-right: 15px;">{{remainder}}</span>
+                    <span style="margin-right: 15px;">{{bal.balance}}</span>
                 </li>
             </ul>
         </div>
