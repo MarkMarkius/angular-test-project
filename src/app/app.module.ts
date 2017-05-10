@@ -9,6 +9,9 @@ import 'hammerjs';
 import {AppRoutingModule} from './app-routing.module';
 import {AppService} from './service/app.service';
 
+import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
+import { InMemoryDataService } from './in-memory-data.service';
+
 import {AppComponent} from './application/app.component';
 import {MainComponent} from './home/main.component';
 import {CategoriesComponent} from './categories/categories.component';
@@ -26,7 +29,8 @@ import {CategoryItemComponent} from './category-item/category-item.component';
     FormsModule,
     HttpModule,
     MaterialModule,
-    AppRoutingModule
+    AppRoutingModule,
+    InMemoryWebApiModule.forRoot(InMemoryDataService)
   ],
   providers: [AppService],
   bootstrap: [AppComponent]

@@ -2,9 +2,10 @@ import {Component, OnInit} from '@angular/core';
 
 import {Transaction} from '../classes/transaction';
 import {Category} from '../classes/category';
+import {Balance} from '../classes/balance';
 
 import {AppService} from '../service/app.service';
-import {INCOMEDATATA, LOSSDATA, CATEGORIES} from '../app.mook';
+import {CATEGORIES} from '../app.mook';
 
 @Component({
   selector: 'app-main',
@@ -13,7 +14,7 @@ import {INCOMEDATATA, LOSSDATA, CATEGORIES} from '../app.mook';
 })
 
 export class MainComponent implements OnInit {
-
+  balance: Balance[];
   incomeData: Transaction[];
   lossData: Transaction[];
 
@@ -67,9 +68,9 @@ export class MainComponent implements OnInit {
 
   getData() {
     return Promise.all([
-      this.appService.getTransaction(INCOMEDATATA).then(incomeData => this.incomeData = INCOMEDATATA),
-      this.appService.getTransaction(LOSSDATA).then(lossData => this.lossData = LOSSDATA),
-      this.appService.getCategory(CATEGORIES).then(categories => this.categories = CATEGORIES)
+      this.appService.getIncomeData().then(incomeData => this.incomeData = incomeData),
+      this.appService.getLossData().then(lossData => this.lossData = lossData),
+      this.appService.getCategory().then(categories => this.categories = categories)
     ]);
   }
 

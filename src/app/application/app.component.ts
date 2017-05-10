@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 
 import {Balance} from '../classes/balance';
 import {AppService} from '../service/app.service';
-import {BALANCE} from '../app.mook';
+
 
 @Component({
   selector: 'app-root',
@@ -15,19 +15,9 @@ export class AppComponent implements OnInit {
 
   constructor(private appService: AppService) {
   }
-  ngOnInit() {
-    this.getData().then(() => {
-      this.test();
-    });
-  }
 
-  getData() {
-    return Promise.all([
-      this.appService.getBalance(BALANCE).then(balance => this.balance = BALANCE)
-    ]);
-  }
-
-  test() {
-    console.log(this.balance);
+  ngOnInit(): void {
+    this.appService.getBalance()
+      .then(balance => this.balance = balance);
   }
 }

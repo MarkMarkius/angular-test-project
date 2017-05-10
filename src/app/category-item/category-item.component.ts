@@ -2,7 +2,7 @@ import 'rxjs';
 import {Component, OnInit} from '@angular/core';
 
 import {ActivatedRoute, Params} from '@angular/router';
-import {INCOMEDATATA} from '../app.mook';
+// import {INCOMEDATATA, CATEGORIES} from '../app.mook';
 
 import {Transaction} from '../classes/transaction';
 import {AppService} from '../service/app.service';
@@ -14,15 +14,17 @@ import {AppService} from '../service/app.service';
 })
 export class CategoryItemComponent implements OnInit {
 
-  items: Transaction[];
+  item: Transaction[];
 
   constructor(private route: ActivatedRoute,
-              private appService: AppService) {
-  }
+              private appService: AppService) {}
 
   ngOnInit(): void {
-    this.route.params
-      .switchMap((params: Params) => this.appService.getTransByCat(params['name'], INCOMEDATATA))
-      .subscribe(items => this.items = items);
+    // this.route.params
+    //   .switchMap((params: Params) => this.appService.getTransByCat(params['name'], INCOMEDATATA))
+    //   .subscribe(item => this.item = item);
   }
+
+
+
 }

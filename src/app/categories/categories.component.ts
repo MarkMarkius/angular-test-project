@@ -3,7 +3,7 @@ import {Component, OnInit} from '@angular/core';
 import {Category} from '../classes/category';
 
 import {AppService} from '../service/app.service';
-import {CATEGORIES} from '../app.mook';
+
 
 @Component({
   selector: 'app-categories',
@@ -18,8 +18,8 @@ export class CategoriesComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.appService.getCategory(CATEGORIES)
-      .then(categories => this.categories = CATEGORIES);
+    this.appService.getCategory()
+      .then(categories => this.categories = categories);
   }
 
 

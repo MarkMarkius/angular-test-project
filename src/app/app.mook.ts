@@ -1,21 +1,4 @@
-import {Balance} from './classes/balance';
-import {Transaction} from './classes/transaction';
 import {Category} from './classes/category';
-
-export const BALANCE: Balance[] = [
-  {income: 20, loss: 10, balance: 10}
-];
-
-export const INCOMEDATATA: Transaction[] = [
-  {name: 'name1', value: 250, category: 'food', date: '02.03.2017'},
-  {name: 'name1', value: 250, category: 'food', date: '02.03.2017'},
-  {name: 'name1', value: 250, category: 'food', date: '02.03.2017'}
-];
-
-export const LOSSDATA: Transaction[] = [
-  {name: 'name1', value: 23, category: 'food', date: '04.03.2017'},
-  {name: 'name2', value: 10, category: 'food', date: '05.03.2017'}
-];
 
 export const CATEGORIES: Category[] = [
   {id: 1, name: 'food', type: 'loss'},
