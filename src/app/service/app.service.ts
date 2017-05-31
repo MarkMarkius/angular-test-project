@@ -1,6 +1,10 @@
 import {Injectable} from '@angular/core';
-import {Http} from '@angular/http';
+import {Http, Response} from '@angular/http';
 
+
+import {Observable} from 'rxjs/Observable';
+import 'rxjs/add/operator/catch';
+import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/toPromise';
 
 import {Transaction} from '../classes/transaction';
@@ -14,31 +18,32 @@ export class AppService {
   private lossDataUrl = 'api/lossData';
   private categoryUrl = 'api/categories';
 
+  static extractData(res: Response) {
+    const body = res.json();
+    return body.data || {};
+  }
+
   constructor(private http: Http) {
   }
 
-  getBalance(): Promise<Balance[]> {
+  getBalance(): Observable<Balance[]> {
     return this.http.get(this.balanceUrl)
-      .toPromise()
-      .then(response => response.json().data as Balance[]);
+      .map(AppService.extractData);
   }
 
-  getIncomeData(): Promise<Transaction[]> {
+  getIncomeData(): Observable<Transaction[]> {
     return this.http.get(this.incomeDataUrl)
-      .toPromise()
-      .then(response => response.json().data as Transaction[]);
+      .map(AppService.extractData);
   }
 
-  getLossData(): Promise<Transaction[]> {
+  getLossData(): Observable<Transaction[]> {
     return this.http.get(this.lossDataUrl)
-      .toPromise()
-      .then(response => response.json().data as Transaction[]);
+      .map(AppService.extractData);
   }
 
-  getCategory(): Promise<Category[]> {
+  getCategory(): Observable<Category[]> {
     return this.http.get(this.categoryUrl)
-      .toPromise()
-      .then(response => response.json().data as Category[]);
+      .map(AppService.extractData);
   }
 
   // getTransByCat(name: string, data): Promise<Transaction[]> {

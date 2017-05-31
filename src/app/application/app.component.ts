@@ -18,6 +18,6 @@ export class AppComponent implements OnInit {
 
   ngOnInit(): void {
     this.appService.getBalance()
-      .then(balance => this.balance = balance);
+      .subscribe(balance => this.balance = balance);
   }
 }

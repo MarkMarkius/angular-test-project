@@ -19,7 +19,7 @@ export class CategoriesComponent implements OnInit {
 
   ngOnInit() {
     this.appService.getCategory()
-      .then(categories => this.categories = categories);
+      .subscribe(categories => this.categories = categories);
   }
 
 
